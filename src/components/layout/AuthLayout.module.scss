@@ -1,0 +1,38 @@
+.authLayout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1px);
+  }
+}
+
+.authContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-lg;
+  position: relative;
+  z-index: 1;
+}
+
+.authContent {
+  width: 100%;
+  max-width: 400px;
+  background: $white;
+  border-radius: $border-radius-xl;
+  box-shadow: $box-shadow-lg;
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
+}

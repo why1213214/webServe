@@ -1,0 +1,107 @@
+.layout {
+  min-height: 100vh;
+}
+
+.sider {
+  box-shadow: $box-shadow-base;
+  z-index: 10;
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    font-size: $font-size-lg;
+    font-weight: bold;
+    color: $white;
+    background: rgba(255, 255, 255, 0.1);
+    margin: $spacing-base;
+    border-radius: $border-radius-base;
+    transition: $transition-base;
+  }
+  
+  .menu {
+    border-right: none;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-lg;
+  box-shadow: $box-shadow-sm;
+  z-index: 9;
+  
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    
+    .collapseBtn {
+      font-size: $font-size-lg;
+      width: 64px;
+      height: 64px;
+      border-radius: 0;
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+  
+  .headerRight {
+    display: flex;
+    align-items: center;
+    
+    .userInfo {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      cursor: pointer;
+      padding: $spacing-sm $spacing-base;
+      border-radius: $border-radius-base;
+      transition: $transition-fast;
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      
+      .username {
+        font-size: $font-size-sm;
+        color: $gray-8;
+        
+        @media (max-width: $screen-sm) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  margin: $spacing-lg;
+  min-height: calc(100vh - 64px - #{$spacing-lg * 2});
+  
+  .contentInner {
+    background: $white;
+    padding: $spacing-lg;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow-sm;
+    min-height: 100%;
+  }
+}
+
+// 响应式设计
+@media (max-width: $screen-md) {
+  .header {
+    padding: 0 $spacing-base;
+  }
+  
+  .content {
+    margin: $spacing-base;
+    
+    .contentInner {
+      padding: $spacing-base;
+    }
+  }
+}

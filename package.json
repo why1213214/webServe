@@ -1,41 +1,53 @@
 {
-  "name": "webServe",
+  "name": "webserve",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "dev:5173": "vite --port 5173 --host",
-  "diag": "node scripts/diagnose-port.mjs 5173",
-    "build": "tsc && vite build",
+    "dev": "vite",
+    "dev:host": "vite --host",
+    "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext .ts,.tsx",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,scss,md}\"",
+    "typecheck": "tsc -b --noEmit",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.0",
-    "antd": "^5.20.0",
-    "axios": "^1.7.0",
+    "@reduxjs/toolkit": "^2.4.0",
+    "antd": "^5.22.2",
+    "axios": "^1.7.8",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
+    "immer": "^10.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
-    "react-router-dom": "^6.23.0"
+    "react-router-dom": "^6.28.0",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "eslint": "^8.57.0",
+    "@types/node": "^22.9.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "@vitest/coverage-v8": "^2.1.5",
+    "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "less": "^4.2.0",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.0",
-    "vite": "^5.2.0",
-    "@vitejs/plugin-react": "^4.2.1"
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "prettier": "^3.3.3",
+    "sass": "^1.82.0",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.1",
+    "vitest": "^2.1.5"
   },
-  "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67"
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
 }
