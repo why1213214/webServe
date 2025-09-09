@@ -12,6 +12,11 @@ import AppRouter from '@/router';
 import AppInitializer from '@/components/common/AppInitializer';
 import '@/styles/global.scss';
 
+// 开发环境下导入API测试工具
+if (process.env.NODE_ENV === 'development') {
+  import('@/utils/apiTester');
+}
+
 // 配置dayjs
 dayjs.locale('zh-cn');
 

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import { type AuthState, type LoginRequest, type LoginResponse, type User } from '@/types';
+import { type AuthState, type LoginRequest, type LoginResponse, type User, type RegisterRequest } from '@/types';
 import authService from '@/services/authService';
 
 // 初始状态
@@ -11,6 +11,25 @@ const initialState: AuthState = {
   loading: false,
   error: null,
 };
+
+// 异步thunk - 注册
+export const registerAsync = createAsyncThunk<
+  { success: boolean; message: string },
+  RegisterRequest,
+  { rejectValue: string }
+>(
+  'auth/register',
+  async (registerData, { rejectWithValue }) => {
+    try {
+      const response = await authService.register(registerData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(
+        error instanceof Error ? error.message : '注册失败'
+      );
+    }
+  }
+);
 
 // 异步thunk - 登录
 export const loginAsync = createAsyncThunk<
@@ -102,6 +121,19 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // 注册
+      .addCase(registerAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerAsync.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(registerAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || '注册失败';
+      })
       // 登录
       .addCase(loginAsync.pending, (state) => {
         state.loading = true;
@@ -161,3 +193,4 @@ const authSlice = createSlice({
 
 export const { clearError, clearAuth, setToken, setUser } = authSlice.actions;
 export default authSlice.reducer;
+// registerAsync, loginAsync, getCurrentUserAsync, refreshTokenAsync, logoutAsync 已通过上面的 export const 导出
